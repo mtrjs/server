@@ -1,0 +1,32 @@
+version: '3'
+services:
+  mongodb:
+    image: mongo:4.2.6
+    container_name: mongo_db
+    environment:
+      - MONGO_INITDB_DATABASE=monitor
+      - MONGO_INITDB_ROOT_USERNAME=admin
+      - MONGO_INITDB_ROOT_PASSWORD=admin
+    volumes:
+      - ./mongo/init-mongo.js:/docker-entrypoint-initdb.d/init-mongo.js:ro
+      - ./mongo/mongo-volume:/data/db
+    ports:
+      - '27017-27019:27017-27019'
+    restart: always
+  mysql:
+    image: mysql:8
+    container_name: mysql
+    restart: always
+    environment:
+      MYSQL_DATABASE: 'octopus'
+      MYSQL_USER: 'user'
+      MYSQL_PASSWORD: 'root'
+      MYSQL_ROOT_PASSWORD: 'root'
+    ports:
+      - '3306:3306'
+    expose:
+      - '3306'
+    volumes:
+      - ./.mysql-data/octopus:/var/lib/mysql
+      - ./mysql/my.cnf:/etc/my.cnf
+      - ./mysql/init.sql:/docker-entrypoint-initdb.d/init.sql
