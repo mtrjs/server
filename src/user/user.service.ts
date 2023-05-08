@@ -80,12 +80,13 @@ export class UserService {
       const result = await this.userModel.findOne({
         account: data.account,
       });
-      const { id, createdAt, account } = result;
+
+      const { _id, createdAt, account } = result;
       return {
         code: 0,
         data: {
           account,
-          id,
+          id: _id,
           createdAt,
         },
       };
