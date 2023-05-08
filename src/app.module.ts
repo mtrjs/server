@@ -12,8 +12,7 @@ import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
-    MongooseModule.forRoot('mongodb://127.0.0.1', {
-      dbName: 'monitor',
+    MongooseModule.forRoot('mongodb://127.0.0.1/monitor', {
       user: 'admin',
       pass: 'admin',
     }),

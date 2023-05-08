@@ -1,25 +1,28 @@
 import { Injectable } from '@nestjs/common';
 import { CatchError } from '../utils/catchError';
 import { AuthService } from '../auth/auth.service';
-import { PrismaService } from '../prisma.service';
 import { randomString } from '../utils/helper';
+import { InjectModel } from '@nestjs/mongoose';
+import { Model } from 'mongoose';
+import { UserDocument } from '../schemas/user.schema';
+import { ApplicationDocument } from 'src/schemas/application.schema';
 import * as dayjs from 'dayjs';
 
 @Injectable()
 export class UserService {
   constructor(
-    private prismaService: PrismaService,
     private authService: AuthService,
+    @InjectModel('user')
+    private userModel: Model<UserDocument>,
+    @InjectModel('application')
+    private applicationModel: Model<ApplicationDocument>,
   ) {}
 
   @CatchError()
   async create(user: User) {
-    const { name, password } = user;
+    const { account, password } = user;
     try {
-      const result = await this.prismaService.user.create({
-        data: { name, password },
-      });
-      console.log(result);
+      const result = await this.userModel.insertMany([{ account, password }]);
       return {
         code: 0,
         data: {
@@ -72,16 +75,16 @@ export class UserService {
     }
   }
 
-  async getUser({ name }: { name: string }) {
+  async getUser(data: { account: string }) {
     try {
-      const result = await this.prismaService.user.findFirst({
-        where: { name },
+      const result = await this.userModel.findOne({
+        account: data.account,
       });
-      const { id, createdAt } = result;
+      const { id, createdAt, account } = result;
       return {
         code: 0,
         data: {
-          name: result.name,
+          account,
           id,
           createdAt,
         },
@@ -96,8 +99,8 @@ export class UserService {
 
   @CatchError()
   async getApplication({ uid }: { uid: number }) {
-    const result = await this.prismaService.application.findMany({
-      where: { user_id: uid },
+    const result = await this.applicationModel.find({
+      user_id: uid,
     });
     return {
       code: 0,
@@ -110,8 +113,8 @@ export class UserService {
     const { name, env, type, uid } = data;
     const app_id = randomString(8);
 
-    const result = await this.prismaService.application.create({
-      data: {
+    const result = await this.applicationModel.insertMany([
+      {
         name,
         type,
         env,
@@ -119,7 +122,7 @@ export class UserService {
         user_id: uid,
         createdAt: dayjs().add(8, 'h').toISOString(),
       },
-    });
+    ]);
     return {
       code: 0,
       data: result,

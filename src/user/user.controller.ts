@@ -17,8 +17,8 @@ export class UserController {
   @Get('/')
   @UseGuards(JwtAuthGuard)
   async getUser(@Request() req) {
-    const { name } = req.user;
-    return this.userService.getUser({ name });
+    const { account } = req.user;
+    return this.userService.getUser({ account });
   }
 
   @Post('/login')
