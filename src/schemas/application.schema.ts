@@ -16,6 +16,9 @@ export class Application extends Document {
 
   @Prop({ required: true })
   user_id: string;
+
+  @Prop({ required: true })
+  name: string;
 }
 
 export const ApplicationSchema = SchemaFactory.createForClass(Application);

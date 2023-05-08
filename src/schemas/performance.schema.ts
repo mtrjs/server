@@ -21,6 +21,9 @@ export class Performance extends Document {
   app_env: string;
 
   @Prop()
+  referrer: string;
+
+  @Prop()
   ip: string;
 
   @Prop()

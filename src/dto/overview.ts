@@ -7,3 +7,5 @@ export class DeviceDto extends DateFilterDto {
   @IsOptional()
   type: Dimension;
 }
+
+export class GetChannelStatDto extends DateFilterDto {}

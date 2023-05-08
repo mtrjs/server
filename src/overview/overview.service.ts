@@ -6,7 +6,7 @@ import { UAParser } from 'ua-parser-js';
 import IP2Region from 'ip2region';
 import { DateFilterDto } from 'src/dto/common';
 import { CatchError } from 'src/utils/catchError';
-import { DeviceDto } from 'src/dto/overview';
+import { DeviceDto, GetChannelStatDto } from 'src/dto/overview';
 
 export enum Dimension {
   os = 'os',
@@ -162,6 +162,54 @@ export class OverviewService {
     return {
       code: 0,
       data: device,
+    };
+  }
+
+  @CatchError()
+  async getChannelStat(body: ApplicationInfo & GetChannelStatDto) {
+    const { app_env, app_id, startAt, endAt } = body;
+
+    const query: FilterQuery<PerformanceDocument> = {
+      app_env,
+      app_id,
+    };
+
+    if (startAt || endAt) {
+      query.createdAt = {};
+      if (startAt) query.createdAt.$gt = startAt;
+      if (endAt) query.createdAt.$lt = endAt;
+    }
+
+    const res = await this.performanceModel.aggregate([
+      {
+        $match: query,
+      },
+      {
+        $group: {
+          _id: '$referrer',
+          count: { $sum: 1 },
+        },
+      },
+    ]);
+
+    const arr = res || [];
+    let ne = 0;
+
+    const data = arr.reduce((acc, cur) => {
+      const { _id, count } = cur || {};
+
+      if (!_id) {
+        ne += count;
+      } else {
+        acc.push({ label: _id, value: count });
+      }
+      return acc;
+    }, []);
+
+    data.push({ label: '未知', value: ne });
+    return {
+      code: 0,
+      data,
     };
   }
 }
