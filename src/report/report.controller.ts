@@ -42,14 +42,6 @@ export class ReportController {
 
         if (eid === '1000') {
           this.reportService.performance(o);
-        } else if (eid === '1003') {
-          this.reportService.jsException(o);
-        } else if (eid === '1004') {
-          this.reportService.requestException(o);
-        } else if (eid === '1006') {
-          this.reportService.resourceException(o);
-        } else if (eid === '1005') {
-          this.reportService.consoleException(o);
         }
       });
     }
