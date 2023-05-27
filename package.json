@@ -37,7 +37,6 @@
     "passport-jwt": "^4.0.1",
     "reflect-metadata": "^0.1.13",
     "rxjs": "^7.2.0",
-    "source-map": "^0.7.4",
     "ua-parser-js": "^1.0.32"
   },
   "devDependencies": {

@@ -49,9 +49,6 @@ dependencies:
   rxjs:
     specifier: ^7.2.0
     version: registry.npmmirror.com/rxjs@7.8.1
-  source-map:
-    specifier: ^0.7.4
-    version: registry.npmmirror.com/source-map@0.7.4
   ua-parser-js:
     specifier: ^1.0.32
     version: registry.npmmirror.com/ua-parser-js@1.0.35
@@ -5960,6 +5957,7 @@ packages:
     name: source-map
     version: 0.7.4
     engines: {node: '>= 8'}
+    dev: true
 
   registry.npmmirror.com/sparse-bitfield@3.0.3:
     resolution: {integrity: sha512-kvzhi7vqKTfkh0PZU+2D2PIllw2ymqJKujUcyPMd9Y75Nv4nPbGJZXNhxsgdQab2BmlDct1YnfQCguEvHr7VsQ==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/sparse-bitfield/-/sparse-bitfield-3.0.3.tgz}

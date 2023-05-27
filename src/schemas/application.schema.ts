@@ -6,9 +6,6 @@ export type ApplicationDocument = Application & Document;
 @Schema({ collection: 'application' })
 export class Application extends Document {
   @Prop({ required: true })
-  env: string;
-
-  @Prop({ required: true })
   app_id: string;
 
   @Prop()

@@ -40,7 +40,7 @@ export class ReportController {
       reportDatas.forEach((o) => {
         const { eid } = o;
 
-        if (eid === '1000') {
+        if (eid === '0dc1cc15aa33') {
           this.reportService.performance(o);
         }
       });
