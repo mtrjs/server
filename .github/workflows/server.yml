@@ -33,14 +33,11 @@ jobs:
       - name: Install Packages
         run: pnpm install
 
-      - name: Build
-        run: pnpm qs:generate
-
       - name: rsync deployments
         uses: burnett01/rsync-deployments@5.2.1
         with:
           switches: -avzr --delete
-          path: server/
+          path: /
           remote_path: /root/project/mtrjs-server/
           remote_host: ${{ secrets.SSH_HOST }}
           remote_port: ${{ secrets.SSH_PORT }}
