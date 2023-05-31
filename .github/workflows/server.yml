@@ -7,14 +7,9 @@ on:
   # Triggers the workflow on push or pull request events but only for the master branch
   push:
     branches: [main]
-    paths:
-      - 'server/**'
-      - '.github/workflows/server.yml'
+
   pull_request:
     branches: [main]
-    paths:
-      - 'server/**'
-      - '.github/workflows/server.yml'
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -27,10 +22,10 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
 
-      - name: Use Node.js ${{ matrix.node-version }}
+      - name: Use Node.js 16.19.1
         uses: actions/setup-node@v1
         with:
-          node-version: ${{ matrix.node-version }}
+          node-version: 16.19.1
 
       - name: Install pnpm
         run: npm i pnpm@7.30.0 -g
@@ -63,5 +58,3 @@ jobs:
             cd project/mtrjs-server
             pnpm install 
             pnpm build
-            pnpm kill
-            pnpm run deploy
