@@ -6,7 +6,7 @@ export type PerformanceDocument = Performance & Document;
 @Schema({ collection: 'performance' })
 export class Performance extends Document {
   @Prop({ required: true })
-  eid: number;
+  eid: string;
 
   @Prop()
   t: number;
