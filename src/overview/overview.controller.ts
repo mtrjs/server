@@ -12,28 +12,25 @@ export class OverviewController {
   @UseGuards(JwtAuthGuard)
   async getStat(
     @Headers('app-id') app_id: string,
-    @Headers('app-env') app_env: string,
     @Query() query: DateFilterDto,
   ) {
-    return this.overviewService.getUserStat({ ...query, app_env, app_id });
+    return this.overviewService.getUserStat({ ...query, app_id });
   }
 
   @Get('/device')
   @UseGuards(JwtAuthGuard)
   async getDeviceInfo(
     @Headers('app-id') app_id: string,
-    @Headers('app-env') app_env: string,
     @Query() query: DeviceDto,
   ) {
-    return this.overviewService.getDeviceInfo({ ...query, app_env, app_id });
+    return this.overviewService.getDeviceInfo({ ...query, app_id });
   }
 
   @Get('/channel-stat')
   async getChannelStat(
     @Headers('app-id') app_id: string,
-    @Headers('app-env') app_env: string,
     @Query() query: GetChannelStatDto,
   ) {
-    return this.overviewService.getChannelStat({ ...query, app_env, app_id });
+    return this.overviewService.getChannelStat({ ...query, app_id });
   }
 }

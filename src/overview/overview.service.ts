@@ -23,9 +23,9 @@ export class OverviewService {
 
   @CatchError()
   async getUserStat(appInfo: AppInfo & DateFilterDto) {
-    const { app_env, app_id, startAt, endAt } = appInfo;
+    const { app_id, startAt, endAt } = appInfo;
 
-    const query: FilterQuery<PerformanceDocument> = { app_env, app_id };
+    const query: FilterQuery<PerformanceDocument> = { app_id };
 
     if (startAt || endAt) {
       query.createdAt = {};
@@ -108,9 +108,9 @@ export class OverviewService {
 
   @CatchError()
   async getDeviceInfo(data: ApplicationInfo & DeviceDto) {
-    const { app_env, app_id, startAt, endAt, type } = data;
+    const { app_id, startAt, endAt, type } = data;
 
-    const query: FilterQuery<PerformanceDocument> = { app_env, app_id };
+    const query: FilterQuery<PerformanceDocument> = { app_id };
 
     if (startAt || endAt) {
       query.createdAt = {};
@@ -167,10 +167,9 @@ export class OverviewService {
 
   @CatchError()
   async getChannelStat(body: ApplicationInfo & GetChannelStatDto) {
-    const { app_env, app_id, startAt, endAt } = body;
+    const { app_id, startAt, endAt } = body;
 
     const query: FilterQuery<PerformanceDocument> = {
-      app_env,
       app_id,
     };
 

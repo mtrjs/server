@@ -17,9 +17,6 @@ export class Performance extends Document {
   @Prop({ required: true })
   app_id: string;
 
-  @Prop({ required: true })
-  app_env: string;
-
   @Prop()
   referrer: string;
 
