@@ -6,13 +6,13 @@ export type ApplicationDocument = Application & Document;
 @Schema({ collection: 'application' })
 export class Application extends Document {
   @Prop({ required: true })
-  app_id: string;
+  appId: string;
 
   @Prop()
   createdAt: string;
 
   @Prop({ required: true })
-  user_id: string;
+  userId: string;
 
   @Prop({ required: true })
   name: string;

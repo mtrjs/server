@@ -19,11 +19,9 @@ export class ReportService {
   ) {}
 
   async performance(data: ReportData) {
-    const { l, ...baseData } = data;
     try {
       await this.performanceModel.insertMany({
-        ...baseData,
-        ...l,
+        ...data,
       });
     } catch (error) {
       console.log(error);

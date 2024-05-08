@@ -7,19 +7,20 @@ import { OverviewModule } from './overview/overview.module';
 import { UserModule } from './user/user.module';
 import { GlobalModule } from './global.module';
 import { AuthModule } from './auth/auth.module';
+import { PerformanceModule } from './performance/performance.module';
 
 @Module({
   imports: [
-    MongooseModule.forRoot('mongodb://127.0.0.1/monitor', {
-      authSource: 'monitor',
-      user: 'admin',
-      pass: 'admin',
+    MongooseModule.forRoot('mongodb://127.0.0.1:27017/', {
+      authSource: 'admin',
+      dbName: 'monitor',
     }),
     GlobalModule,
     ReportModule,
     OverviewModule,
     UserModule,
     AuthModule,
+    PerformanceModule,
   ],
   controllers: [AppController],
   providers: [AppService],

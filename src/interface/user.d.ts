@@ -1,7 +1,7 @@
 interface User {
   account: string;
   password: string;
-  user_id?: string;
+  userId?: string;
 }
 
 interface Application {

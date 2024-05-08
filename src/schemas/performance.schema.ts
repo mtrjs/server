@@ -6,16 +6,10 @@ export type PerformanceDocument = Performance & Document;
 @Schema({ collection: 'performance' })
 export class Performance extends Document {
   @Prop({ required: true })
-  eid: string;
-
-  @Prop()
-  t: number;
+  traceId: string;
 
   @Prop({ required: true })
-  trace_id: string;
-
-  @Prop({ required: true })
-  app_id: string;
+  appId: string;
 
   @Prop()
   referrer: string;

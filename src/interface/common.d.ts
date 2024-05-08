@@ -1,3 +1,10 @@
 interface ApplicationInfo {
-  app_id: string;
+  appId: string;
+  appEnv: string;
+}
+
+interface Pager {
+  page: number;
+  pageSize: number;
+  total: string;
 }

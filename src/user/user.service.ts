@@ -112,14 +112,14 @@ export class UserService {
   @CatchError()
   async createApplication(data: Application & { uid: number }) {
     const { name, env, type, uid } = data;
-    const app_id = randomString(8);
+    const appId = randomString(8);
 
     const result = await this.applicationModel.insertMany([
       {
         name,
         type,
         env,
-        app_id,
+        appId,
         user_id: uid,
         createdAt: dayjs().add(8, 'h').toISOString(),
       },

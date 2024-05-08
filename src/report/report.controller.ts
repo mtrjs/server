@@ -9,6 +9,7 @@ import { FileInterceptor } from '@nestjs/platform-express';
 import * as dayjs from 'dayjs';
 import { Ip } from '../decorator/Ip';
 import { ReportService } from './report.service';
+import { Eid } from '../utils/constant';
 
 @Controller('/v1/report')
 export class ReportController {
@@ -19,28 +20,29 @@ export class ReportController {
   @HttpCode(204)
   postReport(
     @Body()
-    body: {
-      data: string;
-    },
+    body: Record<string, any>,
     @Ip() ip: string,
   ) {
-    let reportDatas;
-    try {
-      reportDatas = JSON.parse(body.data);
-    } catch (error) {
-      console.log(error, '数据格式异常!');
-    }
-    if (Array.isArray(reportDatas)) {
-      reportDatas = reportDatas.map((reportData) => {
-        const createdAt = dayjs().format('YYYY-MM-DD HH:mm:ss');
-        return { ...reportData, ip, createdAt };
-      });
-    }
+    const { list, href, traceId, appEnv, ua, appId } = body;
+
+    const reportDatas = list.map((reportData) => {
+      const createdAt = dayjs().format('YYYY-MM-DD HH:mm:ss');
+      return {
+        ...reportData,
+        href,
+        traceId,
+        appEnv,
+        ua,
+        appId,
+        ip,
+        createdAt,
+      };
+    });
     if (Array.isArray(reportDatas)) {
       reportDatas.forEach((o) => {
         const { eid } = o;
 
-        if (eid === '0dc1cc15aa33') {
+        if (eid === Eid.performance) {
           this.reportService.performance(o);
         }
       });
