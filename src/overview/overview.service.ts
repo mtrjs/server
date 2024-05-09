@@ -185,6 +185,14 @@ export class OverviewService {
       },
       {
         $group: {
+          _id: '$ip',
+          referrer: {
+            $first: '$referrer',
+          },
+        },
+      },
+      {
+        $group: {
           _id: '$referrer',
           count: { $sum: 1 },
         },

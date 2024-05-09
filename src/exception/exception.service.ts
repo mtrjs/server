@@ -408,8 +408,7 @@ export class ExceptionService {
       };
     }
 
-    const { ua, _id, eid, createdAt, trace_id, message, name, stack, href } =
-      result;
+    const { ua, _id, createdAt, traceId, message, name, stack, href } = result;
 
     const totalCountRes = await this.JsExceptionModel.aggregate([
       {
@@ -474,9 +473,8 @@ export class ExceptionService {
       code: 0,
       data: {
         _id,
-        eid,
         createdAt,
-        trace_id,
+        traceId,
         name,
         message,
         os,

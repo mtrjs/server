@@ -6,14 +6,11 @@ export type JsExceptionDocument = JsException & Document;
 
 @Schema({ collection: SchemaName.jsException })
 export class JsException extends Document {
-  @Prop({ required: true })
-  eid: number;
-
   @Prop()
-  t: number;
+  t: string;
 
   @Prop({ required: true })
-  trace_id: string;
+  traceId: string;
 
   @Prop({ required: true })
   appId: string;
@@ -22,13 +19,7 @@ export class JsException extends Document {
   appEnv: string;
 
   @Prop()
-  user_id: string;
-
-  @Prop()
-  content_id: string;
-
-  @Prop()
-  content_name: string;
+  userId: string;
 
   @Prop()
   ua: string;
@@ -59,9 +50,6 @@ export class JsException extends Document {
 
   @Prop()
   type: number;
-
-  @Prop()
-  src?: string;
 
   @Prop()
   count?: number;

@@ -18,7 +18,7 @@ export const defaultPager = {
 
 export enum Eid {
   performance = 'performance',
-  resourceException = 'resource_exception',
-  jsException = 'js_exception',
-  requestException = 'request_exception',
+  resourceException = 'resourceException',
+  jsException = 'jsException',
+  requestException = 'requestException',
 }

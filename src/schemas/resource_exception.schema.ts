@@ -13,7 +13,7 @@ export class ResourceException extends Document {
   t: number;
 
   @Prop({ required: true })
-  trace_id: string;
+  traceId: string;
 
   @Prop({ required: true })
   appId: string;

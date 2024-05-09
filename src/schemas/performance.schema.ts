@@ -106,6 +106,27 @@ export class Performance extends Document {
 
   @Prop()
   ttfb: number;
+
+  @Prop()
+  entryType: string;
+
+  @Prop()
+  decodedBodySize: number;
+
+  @Prop()
+  encodedBodySize: number;
+
+  @Prop()
+  name: string;
+
+  @Prop()
+  ntype: number; // 导航类型
+
+  @Prop()
+  t: string; // 客户端时间
+
+  @Prop()
+  duration: number;
 }
 
 export const PerformanceSchema = SchemaFactory.createForClass(Performance);

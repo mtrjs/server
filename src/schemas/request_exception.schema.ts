@@ -6,14 +6,11 @@ export type RequestExceptionDocument = RequestException & Document;
 
 @Schema({ collection: SchemaName.requestException })
 export class RequestException extends Document {
-  @Prop({ required: true })
-  eid: number;
-
   @Prop()
-  t: number;
+  t: string;
 
   @Prop({ required: true })
-  trace_id: string;
+  traceId: string;
 
   @Prop({ required: true })
   appId: string;
@@ -22,16 +19,10 @@ export class RequestException extends Document {
   appEnv: string;
 
   @Prop()
-  user_id: string;
+  userId: string;
 
   @Prop()
-  content_id: string;
-
-  @Prop()
-  content_name: string;
-
-  @Prop()
-  network_type: string;
+  networkType: string;
 
   @Prop()
   ip: string;
@@ -55,7 +46,7 @@ export class RequestException extends Document {
   endTime: number;
 
   @Prop()
-  type: number;
+  type: string;
 
   @Prop()
   status: number;

@@ -7,11 +7,10 @@ import { OverviewModule } from './overview/overview.module';
 import { UserModule } from './user/user.module';
 import { GlobalModule } from './global.module';
 import { AuthModule } from './auth/auth.module';
-import { PerformanceModule } from './performance/performance.module';
 
 @Module({
   imports: [
-    MongooseModule.forRoot('mongodb://127.0.0.1:27017/', {
+    MongooseModule.forRoot('mongodb://172.16.69.227:27017/', {
       authSource: 'admin',
       dbName: 'monitor',
     }),
@@ -20,7 +19,6 @@ import { PerformanceModule } from './performance/performance.module';
     OverviewModule,
     UserModule,
     AuthModule,
-    PerformanceModule,
   ],
   controllers: [AppController],
   providers: [AppService],
