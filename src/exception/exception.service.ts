@@ -26,10 +26,9 @@ export class ExceptionService {
 
   @CatchError()
   async getJsTrend(params: ApplicationInfo & TrendDto) {
-    const { appEnv, appId, startAt, endAt } = params;
+    const { appId, startAt, endAt } = params;
 
     const query: FilterQuery<JsExceptionDocument> = {
-      appEnv,
       appId,
     };
 
@@ -82,10 +81,9 @@ export class ExceptionService {
 
   @CatchError()
   async getResourceTrend(params: ApplicationInfo & TrendDto) {
-    const { appEnv, appId, startAt, endAt } = params;
+    const { appId, startAt, endAt } = params;
 
     const query: FilterQuery<ResourceExceptionDocument> = {
-      appEnv,
       appId,
     };
 
@@ -138,10 +136,9 @@ export class ExceptionService {
 
   @CatchError()
   async getRequestTrend(params: ApplicationInfo & TrendDto) {
-    const { appEnv, appId, startAt, endAt } = params;
+    const { appId, startAt, endAt } = params;
 
     const query: FilterQuery<RequestExceptionDocument> = {
-      appEnv,
       appId,
     };
 
@@ -197,7 +194,6 @@ export class ExceptionService {
       page = 1,
       pageSize = 15,
       appId,
-      appEnv,
       startAt,
       endAt,
       name,
@@ -205,7 +201,6 @@ export class ExceptionService {
 
     const query: FilterQuery<JsExceptionDocument> = {
       appId,
-      appEnv,
     };
 
     if (name) {
@@ -244,7 +239,6 @@ export class ExceptionService {
       page = 1,
       pageSize = 15,
       appId,
-      appEnv,
       startAt,
       endAt,
       name,
@@ -253,7 +247,6 @@ export class ExceptionService {
 
     const query: FilterQuery<RequestExceptionDocument> = {
       appId,
-      appEnv,
     };
 
     if (name) {
@@ -306,7 +299,6 @@ export class ExceptionService {
       page = 1,
       pageSize = 15,
       appId,
-      appEnv,
       startAt,
       endAt,
       name,
@@ -314,7 +306,6 @@ export class ExceptionService {
 
     const query: FilterQuery<ResourceExceptionDocument> = {
       appId,
-      appEnv,
     };
 
     if (name) {
@@ -389,10 +380,9 @@ export class ExceptionService {
 
   @CatchError()
   async getJsException(params: ApplicationInfo & GetJsExceptionDto) {
-    const { appEnv, appId, id } = params;
+    const { appId, id } = params;
 
     const query: FilterQuery<JsExceptionDocument> = {
-      appEnv,
       appId,
     };
 

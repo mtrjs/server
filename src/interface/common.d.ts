@@ -1,6 +1,5 @@
 interface ApplicationInfo {
   appId: string;
-  appEnv: string;
 }
 
 interface Pager {

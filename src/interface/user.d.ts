@@ -6,6 +6,4 @@ interface User {
 
 interface Application {
   name: string;
-  type: number;
-  env: string;
 }

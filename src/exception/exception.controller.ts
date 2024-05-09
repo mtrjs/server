@@ -13,14 +13,9 @@ export class ExceptionController {
 
   @Get('/js/trend')
   @UseGuards(JwtAuthGuard)
-  async getJsTrend(
-    @Headers('app-id') appId: string,
-    @Headers('app-env') appEnv: string,
-    @Query() query: TrendDto,
-  ) {
+  async getJsTrend(@Headers('app-id') appId: string, @Query() query: TrendDto) {
     return this.exceptionService.getJsTrend({
       ...query,
-      appEnv,
       appId,
     });
   }
@@ -29,12 +24,10 @@ export class ExceptionController {
   @UseGuards(JwtAuthGuard)
   async getResourceTrend(
     @Headers('app-id') appId: string,
-    @Headers('app-env') appEnv: string,
     @Query() query: TrendDto,
   ) {
     return this.exceptionService.getResourceTrend({
       ...query,
-      appEnv,
       appId,
     });
   }
@@ -43,12 +36,10 @@ export class ExceptionController {
   @UseGuards(JwtAuthGuard)
   async getRequestTrend(
     @Headers('app-id') appId: string,
-    @Headers('app-env') appEnv: string,
     @Query() query: TrendDto,
   ) {
     return this.exceptionService.getRequestTrend({
       ...query,
-      appEnv,
       appId,
     });
   }
@@ -58,12 +49,10 @@ export class ExceptionController {
   async getJsExceptionList(
     @Query() params: GetExceptionListDto,
     @Headers('app-id') appId: string,
-    @Headers('app-env') appEnv: string,
   ) {
     return this.exceptionService.getJsExceptionList({
       ...params,
       appId,
-      appEnv,
     });
   }
 
@@ -72,12 +61,10 @@ export class ExceptionController {
   async getRequestExceptionList(
     @Query() params: GetExceptionListDto,
     @Headers('app-id') appId: string,
-    @Headers('app-env') appEnv: string,
   ) {
     return this.exceptionService.getRequestExceptionList({
       ...params,
       appId,
-      appEnv,
     });
   }
 
@@ -86,12 +73,10 @@ export class ExceptionController {
   async getResourceExceptionList(
     @Query() params: GetExceptionListDto,
     @Headers('app-id') appId: string,
-    @Headers('app-env') appEnv: string,
   ) {
     return this.exceptionService.getResourceExceptionList({
       ...params,
       appId,
-      appEnv,
     });
   }
 
@@ -100,11 +85,9 @@ export class ExceptionController {
   async getJsException(
     @Query() query: GetJsExceptionDto,
     @Headers('app-id') appId: string,
-    @Headers('app-env') appEnv: string,
   ) {
     return this.exceptionService.getJsException({
       ...query,
-      appEnv,
       appId,
     });
   }

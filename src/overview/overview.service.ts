@@ -23,9 +23,9 @@ export class OverviewService {
 
   @CatchError()
   async getUserStat(appInfo: ApplicationInfo & DateFilterDto) {
-    const { appId, appEnv, startAt, endAt } = appInfo;
+    const { appId, startAt, endAt } = appInfo;
 
-    const query: FilterQuery<PerformanceDocument> = { appEnv, appId };
+    const query: FilterQuery<PerformanceDocument> = { appId };
 
     if (startAt || endAt) {
       query.createdAt = {};

@@ -1,5 +1,4 @@
 interface ReportData {
-  appEnv: string;
   appId: string;
   href: string;
   list: any[];

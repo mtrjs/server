@@ -18,20 +18,11 @@ export class ResourceException extends Document {
   @Prop({ required: true })
   appId: string;
 
-  @Prop({ required: true })
-  appEnv: string;
+  @Prop()
+  userId: string;
 
   @Prop()
-  user_id: string;
-
-  @Prop()
-  content_id: string;
-
-  @Prop()
-  content_name: string;
-
-  @Prop()
-  network_type: string;
+  networkType: string;
 
   @Prop()
   ip: string;

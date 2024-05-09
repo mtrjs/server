@@ -20,39 +20,28 @@ export class PerformanceController {
   @UseGuards(JwtAuthGuard)
   getOverviewIndex(
     @Headers('app-id') appId: string,
-    @Headers('app-env') appEnv: string,
     @Query() query: OverviewDto,
   ) {
     this.logger.log('/v1/performance/overview: called', {
       ...query,
-      appEnv,
       appId,
     });
     return this.performanceService.getOverview({
       ...query,
-      appEnv,
       appId,
     });
   }
 
   @Get('/list')
   @UseGuards(JwtAuthGuard)
-  getList(
-    @Query() query: GetListDto,
-    @Headers('app-id') appId: string,
-    @Headers('app-env') appEnv: string,
-    @Headers('content-id') content_id: string,
-  ) {
+  getList(@Query() query: GetListDto, @Headers('app-id') appId: string) {
     this.logger.log('/v1/performance/list: called', {
       ...query,
-      content_id,
-      appEnv,
       appId,
     });
     return this.performanceService.getList({
       ...query,
       appId,
-      appEnv,
     });
   }
 
@@ -61,17 +50,14 @@ export class PerformanceController {
   getDetail(
     @Query() query: GetPerfDetailDto,
     @Headers('app-id') appId: string,
-    @Headers('app-env') appEnv: string,
   ) {
     this.logger.log('/v1/performance: called', {
       ...query,
-      appEnv,
       appId,
     });
     return this.performanceService.getDetail({
       ...query,
       appId,
-      appEnv,
     });
   }
 }

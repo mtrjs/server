@@ -22,10 +22,9 @@ export class PerformanceService {
    */
   @CatchError()
   async getOverview(appInfo: ApplicationInfo & OverviewDto) {
-    const { appEnv, appId, startAt, endAt } = appInfo;
+    const { appId, startAt, endAt } = appInfo;
 
     const query: FilterQuery<PerformanceDocument> = {
-      appEnv,
       appId,
     };
 
@@ -214,7 +213,6 @@ export class PerformanceService {
   @CatchError()
   async getList(params: ApplicationInfo & GetListDto) {
     const {
-      appEnv,
       appId,
       page = 1,
       pageSize = 15,
@@ -224,7 +222,6 @@ export class PerformanceService {
     } = params;
 
     const query: FilterQuery<PerformanceDocument> = {
-      appEnv,
       appId,
     };
 
@@ -290,11 +287,10 @@ export class PerformanceService {
 
   @CatchError()
   async getDetail(params: ApplicationInfo & GetPerfDetailDto) {
-    const { appId, appEnv, id } = params;
+    const { appId, id } = params;
     const res = await this.performanceModel.findOne({
       _id: id,
       appId,
-      appEnv,
     });
 
     if (!res) {

@@ -101,7 +101,7 @@ export class UserService {
   @CatchError()
   async getApplication({ uid }: { uid: number }) {
     const result = await this.applicationModel.find({
-      user_id: uid,
+      userId: uid,
     });
     return {
       code: 0,
@@ -111,16 +111,14 @@ export class UserService {
 
   @CatchError()
   async createApplication(data: Application & { uid: number }) {
-    const { name, env, type, uid } = data;
+    const { name, uid } = data;
     const appId = randomString(8);
 
     const result = await this.applicationModel.insertMany([
       {
         name,
-        type,
-        env,
         appId,
-        user_id: uid,
+        userId: uid,
         createdAt: dayjs().add(8, 'h').toISOString(),
       },
     ]);

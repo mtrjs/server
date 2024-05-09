@@ -37,6 +37,7 @@ export class UserController {
   @UseGuards(JwtAuthGuard)
   async createApplication(@Request() req, @Body() data: CreateApplicationDto) {
     const { uid } = req.user;
+
     return this.userService.createApplication({ ...data, uid });
   }
 }

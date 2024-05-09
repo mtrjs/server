@@ -15,9 +15,6 @@ export class JsException extends Document {
   @Prop({ required: true })
   appId: string;
 
-  @Prop({ required: true })
-  appEnv: string;
-
   @Prop()
   userId: string;
 

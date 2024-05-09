@@ -25,7 +25,7 @@ export class ReportController {
     body: ReportData,
     @Ip() ip: string,
   ) {
-    const { list = [], href, traceId, appEnv, ua, appId } = body;
+    const { list = [], href, traceId, ua, appId } = body;
     try {
       const reportDatas = list.map((reportData) => {
         const createdAt = dayjs().format('YYYY-MM-DD HH:mm:ss');
@@ -33,7 +33,6 @@ export class ReportController {
           ...reportData,
           href,
           traceId,
-          appEnv,
           ua,
           appId,
           ip,

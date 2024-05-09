@@ -1,4 +1,4 @@
-import { IsNumber, IsString } from 'class-validator';
+import { IsString } from 'class-validator';
 
 export class LoginDto {
   @IsString()
@@ -11,10 +11,4 @@ export class LoginDto {
 export class CreateApplicationDto {
   @IsString()
   name: string;
-
-  @IsString()
-  env: string;
-
-  @IsNumber()
-  type: number;
 }
